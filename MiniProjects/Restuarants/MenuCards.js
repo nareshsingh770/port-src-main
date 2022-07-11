@@ -1,37 +1,40 @@
-import { Button, Paper } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import { Card, CardActions, CardContent, CardMedia, CardHeader, Typography, IconButton, Stack } from '@mui/material'
+import { Card, CardActions, CardContent, CardMedia, CardHeader, Typography, IconButton, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import dish from '../../Assets/dish.jpg'
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box } from '@mui/system';
 
 
 
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert ref={ref} variant="filled" {...props} />;
-});
 
 const MenuCards = (props) => {
-    const [open, setOpen] = React.useState(false);
-    const [cart, setCart] = useState(0)
 
 
-    const clickHandler = (id) => {
-        setOpen(true)
-        setCart(prev => prev + 1)
+
+    const [active, setActive] = useState(false);
+    const [count, setCount] = useState(0);
+
+    const clickHandler = () => {
+        props.openSnackbar(props.price, props.item)
+        setActive(true)
+        setCount(prev => prev + 1)
 
     }
+    const clickHandlerRemove = () => {
+        props.openSnackbar(props.price, props.item)
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
+
+        if (count > 0) {
+            setCount(prev => prev - 1)
+            setActive(true)
         }
+    }
 
-        setOpen(false);
-    };
+
     return (
         <>
             <Card elevation={3}>
@@ -57,12 +60,14 @@ const MenuCards = (props) => {
                 </CardContent>
                 <CardActions disableSpacing sx={{ justifyContent: 'space-between' }}>
                     {props.price}
-                    <Button onClick={() => clickHandler(props.id)} variant='outlined'>Add<AddIcon sx={{ ml: 3 }} /></Button>
-                    <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                            {cart} item added!
-                        </Alert>
-                    </Snackbar>
+
+                    {active ? (<Box><IconButton onClick={clickHandlerRemove}>
+                        <RemoveIcon color='primary' />
+                    </IconButton>
+                        <input style={{ width: '50px', textAlign: 'center' }} value={count} />
+                        <IconButton onClick={clickHandler}>
+                            <AddIcon color='primary' />
+                        </IconButton></Box>) : <Button onClick={clickHandler} variant='outlined'> ADD <AddIcon sx={{ ml: 3 }} /></Button>}
                 </CardActions>
             </Card>
         </>

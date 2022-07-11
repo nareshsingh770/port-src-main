@@ -2,7 +2,7 @@ const MenuList = [
     {
         id: 0,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Oatmeal Almond Milk',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$74'
@@ -10,7 +10,7 @@ const MenuList = [
     {
         id: 1,
         category: 'lunch',
-        item: 'Pizza',
+        item: 'Masala Bhindi',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$14'
@@ -18,7 +18,7 @@ const MenuList = [
     {
         id: 2,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Burgers or hotdogs',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$34'
@@ -26,7 +26,7 @@ const MenuList = [
     {
         id: 3,
         category: 'lunch',
-        item: 'Pizza',
+        item: 'Shahi Egg Curry',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$4'
@@ -34,7 +34,7 @@ const MenuList = [
     {
         id: 4,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Black Channa and Coconut',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$45'
@@ -42,7 +42,7 @@ const MenuList = [
     {
         id: 5,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Muesli',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$12'
@@ -50,7 +50,7 @@ const MenuList = [
     {
         id: 6,
         category: 'lunch',
-        item: 'Pizza',
+        item: 'Quesadillas',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$34'
@@ -58,7 +58,7 @@ const MenuList = [
     {
         id: 7,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Low Fat Dahi Chicken',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$54'
@@ -66,7 +66,7 @@ const MenuList = [
     {
         id: 8,
         category: 'lunch',
-        item: 'Pizza',
+        item: 'Curd Upma',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$16'
@@ -82,7 +82,7 @@ const MenuList = [
     {
         id: 10,
         category: 'lunch',
-        item: 'Pizza',
+        item: 'Lemon Chicken',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$34'
@@ -90,7 +90,7 @@ const MenuList = [
     {
         id: 11,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Dum Aloo Lakhnawi',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$27'
@@ -98,7 +98,7 @@ const MenuList = [
     {
         id: 12,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Keema Biryani',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$54'
@@ -106,7 +106,7 @@ const MenuList = [
     {
         id: 13,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Shahi Egg Curry',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$36'
@@ -114,7 +114,7 @@ const MenuList = [
     {
         id: 14,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Muesli',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$36'
@@ -122,7 +122,7 @@ const MenuList = [
     {
         id: 15,
         category: 'breakfast',
-        item: 'Pizza',
+        item: 'Makhmali Kofte',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$36'
@@ -130,7 +130,7 @@ const MenuList = [
     {
         id: 16,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Ajwaini Paneer Kofta Curry',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$54'
@@ -138,7 +138,7 @@ const MenuList = [
     {
         id: 17,
         category: 'dinner',
-        item: 'Pizza',
+        item: 'Butter Chicken',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$54'
