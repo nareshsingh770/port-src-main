@@ -27,7 +27,7 @@ const MenuCards = (props) => {
         setCount(prev => prev + 1)
         dispatch(orderList(itemName, price, count + 1))
         setActive(true)
-        props.openSnackbar(props.item)
+        props.openSnackbar(props.item, props.price)
 
     }
     const clickHandlerRemove = () => {

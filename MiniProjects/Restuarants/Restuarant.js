@@ -18,16 +18,17 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const Restuarant = () => {
     const orderDetail = useSelector(store => Object.values(store.orderInput))
 
-    // const amount = orderDetail.reduce((prev, curr) =>
-    //     prev + curr.price * curr.quantity
-    // )
+    let amount = 0;
+    if (orderDetail.length > 0) {
+        amount = orderDetail.map(val => val.price * val.quantity).reduce((prev, curr) => prev + curr)
+    }
 
 
     const totalItems = MenuList.length;
     const [list, setList] = useState(MenuList);
     const [total, setTotal] = useState(totalItems);
     const [activeClass, setActive] = useState('all');
-    const [totalPrice, setPrice] = useState(0);
+    const [totalPrice, setPrice] = useState(amount);
 
     const [item, setItem] = useState('');
 
@@ -40,13 +41,13 @@ const Restuarant = () => {
     const horizontal = 'right'
 
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
 
-    const openAlert = (item) => {
+    const openAlert = (item, price) => {
         setOpen(true)
         setItem(item)
-
+        amount == 0 ? setPrice(parseInt(price.substring(1))) : setPrice(old => old + amount)
     }
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -108,7 +109,7 @@ const Restuarant = () => {
                     </Grid>
                 </Container>
             </Paper>
-            <Snackbar open={open} anchorOrigin={{ vertical, horizontal }} autoHideDuration={3000} onClose={handleClose}>
+            <Snackbar open={open} anchorOrigin={{ vertical, horizontal }} onClose={handleClose}>
                 <Alert onClose={handleClose} sx={{ width: '100%' }}>
                     ADDED <i style={{ marginRight: '30px' }}>({item})</i> Total: ${totalPrice}
 
