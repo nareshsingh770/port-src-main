@@ -1,9 +1,10 @@
 import { Container, Grid, Paper, Stack, Button, Box } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MenuCards from './MenuCards';
 import MenuList from './MenuItems';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useSelector } from 'react-redux';
 
 
 const reverseList = ['all', ...new Set(MenuList.map((val) => {
@@ -15,10 +16,23 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const Restuarant = () => {
+    const orderDetail = useSelector(store => Object.values(store.orderInput))
+
+    // const amount = orderDetail.reduce((prev, curr) =>
+    //     prev + curr.price * curr.quantity
+    // )
+
+
     const totalItems = MenuList.length;
     const [list, setList] = useState(MenuList);
     const [total, setTotal] = useState(totalItems);
     const [activeClass, setActive] = useState('all');
+    const [totalPrice, setPrice] = useState(0);
+
+    const [item, setItem] = useState('');
+
+
+
 
 
     // POSITION of the snackbar
@@ -27,16 +41,12 @@ const Restuarant = () => {
 
 
     const [open, setOpen] = React.useState(false);
-    const [cart, setCart] = React.useState(0);
-    const [dish, setDishName] = React.useState('');
 
-    const openAlert = (price, item) => {
+
+    const openAlert = (item) => {
         setOpen(true)
+        setItem(item)
 
-        price = parseInt(price.substring(1))
-        console.log(item)
-        setCart(prev => prev + price)
-        setDishName(item)
     }
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -67,9 +77,6 @@ const Restuarant = () => {
 
     }
 
-    useEffect(() => {
-
-    }, [cart])
 
     return (
         <>
@@ -101,9 +108,10 @@ const Restuarant = () => {
                     </Grid>
                 </Container>
             </Paper>
-            <Snackbar open={open} anchorOrigin={{ vertical, horizontal }} TransitionComponent='TransitionUp' autoHideDuration={3000} onClose={handleClose}>
+            <Snackbar open={open} anchorOrigin={{ vertical, horizontal }} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} sx={{ width: '100%' }}>
-                    ADDED <i style={{ marginRight: '30px' }}>({dish})</i> Total: ${cart}
+                    ADDED <i style={{ marginRight: '30px' }}>({item})</i> Total: ${totalPrice}
+
                 </Alert>
             </Snackbar>
 

@@ -114,7 +114,7 @@ const MenuList = [
     {
         id: 14,
         category: 'breakfast',
-        item: 'Muesli',
+        item: 'Bread Toast with coffee',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem distinctio libero modi quam, tenetur minus.',
         img: 'http://placehold.it/200x100&text=image1',
         price: '$36'

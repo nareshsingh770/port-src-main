@@ -10,7 +10,16 @@ const themeMode = (mode) => {
         payload: mode
     }
 }
+const orderList = (item, price, qnt) => {
+    // console.log(detail)
+    return {
+        type: 'ORDER_DETAILS',
+        orderItem: item,
+        price: price,
+        quantity: qnt
+    }
+}
 
 
 export default contactDetails;
-export { themeMode };
+export { themeMode, orderList };
