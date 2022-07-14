@@ -20,6 +20,21 @@ const orderList = (item, price, qnt) => {
     }
 }
 
+const textInput = (elem) => {
+    return {
+        type: 'INPUT_TEXT',
+        payload: elem
+    }
+}
+
+
+const weatherState = (loc) => {
+    return {
+        type: 'WEATHER_LOC',
+        payload: loc
+    }
+}
+
 
 export default contactDetails;
-export { themeMode, orderList };
+export { themeMode, orderList, textInput, weatherState };

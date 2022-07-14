@@ -5,7 +5,7 @@ const initialDetail = {
     subject: '',
     message: ''
 }
-const initialOrderDetail = {}
+
 const messageInput = (state = initialDetail, action) => {
     switch (action.type) {
         case 'DETAIL_INPUT_USERS':
@@ -27,6 +27,9 @@ const colorThemeApplied = (theme = false, action) => {
     }
 }
 
+
+
+const initialOrderDetail = {}
 const orderInput = (state = initialOrderDetail, action) => {
     switch (action.type) {
         case 'ORDER_DETAILS':
@@ -41,7 +44,23 @@ const orderInput = (state = initialOrderDetail, action) => {
     }
 }
 
+const text_input = (state = '', { type, payload }) => {
+    switch (type) {
+        case 'INPUT_TEXT':
+            return payload.target.value
+        default: return state
+    }
+}
+
+
+const weather_set = (state = 'delhi', { type, payload }) => {
+    switch (type) {
+        case 'INPUT_TEXT':
+            return payload
+        default: return state
+    }
+}
 
 
 export default messageInput;
-export { colorThemeApplied, orderInput };
+export { colorThemeApplied, orderInput, text_input, weather_set };
