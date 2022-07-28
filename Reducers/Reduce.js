@@ -47,7 +47,7 @@ const orderInput = (state = initialOrderDetail, action) => {
 const text_input = (state = '', { type, payload }) => {
     switch (type) {
         case 'INPUT_TEXT':
-            return payload.target.value
+            return payload
         default: return state
     }
 }
@@ -55,7 +55,7 @@ const text_input = (state = '', { type, payload }) => {
 
 const weather_set = (state = 'delhi', { type, payload }) => {
     switch (type) {
-        case 'INPUT_TEXT':
+        case 'WEATHER_LOC':
             return payload
         default: return state
     }

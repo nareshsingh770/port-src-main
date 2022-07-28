@@ -11,7 +11,6 @@ const themeMode = (mode) => {
     }
 }
 const orderList = (item, price, qnt) => {
-    // console.log(detail)
     return {
         type: 'ORDER_DETAILS',
         orderItem: item,
