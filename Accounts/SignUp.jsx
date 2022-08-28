@@ -1,64 +1,128 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import './Account.css';
+import { initializeApp } from "firebase/app";
+import { getDatabase, set, ref } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+
 
 const SignUp = () => {
-    const records = () => {
-        const allUsers = JSON.parse(localStorage.getItem('users'));
-        if (allUsers) {
-            return allUsers
-        } else {
-            return {}
-        }
-    }
+    const registerRef = useRef()
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyBnAW5CoADcqrM1WHRoDx4g20DcSEfYO7A",
+        authDomain: "authentication-app-9eed8.firebaseapp.com",
+        databaseURL: "https://authentication-app-9eed8-default-rtdb.firebaseio.com",
+        projectId: "authentication-app-9eed8",
+        storageBucket: "authentication-app-9eed8.appspot.com",
+        messagingSenderId: "188390868661",
+        appId: "1:188390868661:web:82d35c9b562c308c45a0fc"
+    };
 
-    const [state, setstate] = useState({ inputUser: '', inputEmail: '', inputPassword: '' })
-    const [addUsers, setUsers] = useState(records)
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
 
-
-    const InputUserDetails = (e) => {
-        console.log(e.target.id)
-        const { id, value } = e.target;
-
-
-        setstate((oldData) => {
-            return {
-                ...oldData, [id]: value
-            }
-        })
-    }
-
-    const addUser = (e) => {
+    const register = (e) => {
         e.preventDefault();
-        setUsers((oldData) => {
-            return {
-                ...oldData, [state.inputUser]: state
-            }
+        // console.log(loginRef)
+        const inputOnly = [...registerRef.current.elements].filter(elm => {
+            return elm.type === 'text' || elm.type === 'password'
         })
-        setstate({ inputUser: '', inputEmail: '', inputPassword: '' });
+        const [emailElem, passwordElem] = inputOnly
+        console.log(inputOnly)
+        const email = emailElem.value
+        const password = passwordElem.value
+
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                set(ref(database, 'users/', user.uid), {
+                    email: email
+                })
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage)
+            });
     }
 
-
-    useEffect(() => {
-        localStorage.setItem('users', JSON.stringify(addUsers));
-    }, [addUsers])
     return (
         <>
-            <div className="container">
-                <div className="card card-container">
-                    <img id="profile-img" className="profile-img-card" alt="user" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                    <p id="profile-name" className="profile-name-card">Sign Up</p>
-                    <form className="form-signin" onSubmit={addUser}>
-                        <span id="reauth-email" className="reauth-email"></span>
-                        <input type="text" id="inputUser" value={state.inputUser} onChange={InputUserDetails} className="form-control" placeholder="User name" required />
-                        <input type="email" id="inputEmail" value={state.inputEmail} onChange={InputUserDetails} className="form-control" placeholder="Email address" required />
-                        <input type="password" id="inputPassword" value={state.inputPassword} onChange={InputUserDetails} className="form-control" placeholder="Password" required />
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign Up
+                    </Typography>
+                    <Box component="form" ref={registerRef} noValidate sx={{ mt: 1 }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="confirm-password"
+                            label="Confirm Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="confrim-password"
+                            autoComplete="current-password"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            size='large'
+                            onClick={register}
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Register
+                        </Button>
 
-                        <button className="btn btn-lg btn-outline-danger btn-block btn-signin mt-3" type="submit">Create Account</button>
-                    </form>
-
-                </div>
-            </div>
+                    </Box>
+                </Box>
+            </Container>
         </>
     )
 }

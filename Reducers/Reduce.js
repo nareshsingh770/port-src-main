@@ -44,15 +44,6 @@ const orderInput = (state = initialOrderDetail, action) => {
     }
 }
 
-const text_input = (state = '', { type, payload }) => {
-    switch (type) {
-        case 'INPUT_TEXT':
-            return payload
-        default: return state
-    }
-}
-
-
 const weather_set = (state = 'delhi', { type, payload }) => {
     switch (type) {
         case 'WEATHER_LOC':
@@ -60,7 +51,17 @@ const weather_set = (state = 'delhi', { type, payload }) => {
         default: return state
     }
 }
+const weather_data = (state = '', { type, payload }) => {
+    switch (type) {
+        case 'SHOW_WEATHER':
+            return payload
+        default: return state
+    }
+}
+
+
+
 
 
 export default messageInput;
-export { colorThemeApplied, orderInput, text_input, weather_set };
+export { colorThemeApplied, orderInput, weather_set, weather_data };

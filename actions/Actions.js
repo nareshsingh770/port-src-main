@@ -19,13 +19,12 @@ const orderList = (item, price, qnt) => {
     }
 }
 
-const textInput = (elem) => {
+const weatherDataAction = (loc) => {
     return {
-        type: 'INPUT_TEXT',
-        payload: elem
+        type: 'SHOW_WEATHER',
+        payload: loc
     }
 }
-
 
 const weatherState = (loc) => {
     return {
@@ -36,4 +35,4 @@ const weatherState = (loc) => {
 
 
 export default contactDetails;
-export { themeMode, orderList, textInput, weatherState };
+export { themeMode, orderList, weatherState, weatherDataAction };
