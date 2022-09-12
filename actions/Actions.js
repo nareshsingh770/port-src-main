@@ -1,7 +1,7 @@
-const contactDetails = (element) => {
+const contactDetails = (data) => {
     return {
         type: 'DETAIL_INPUT_USERS',
-        payload: element
+        payload: data
     }
 }
 const themeMode = (mode) => {
@@ -34,5 +34,30 @@ const weatherState = (loc) => {
 }
 
 
+const addTodoList = (text) => {
+    return {
+        type: 'ADDED_TODO_TEXT',
+        payload: text
+    }
+}
+const deletedList = (id) => {
+    return {
+        type: 'DELETE_TODO_TEXT',
+        payload: id
+    }
+}
+const editedList = (element) => {
+    return {
+        type: 'UPDATE_TODO_TEXT',
+        payload: element
+    }
+}
+const deleteAllList = () => {
+    return {
+        type: 'DELETE_ALL_TODO_TEXT',
+    }
+}
+
+
 export default contactDetails;
-export { themeMode, orderList, weatherState, weatherDataAction };
+export { themeMode, orderList, weatherState, weatherDataAction, addTodoList, deletedList, editedList, deleteAllList };

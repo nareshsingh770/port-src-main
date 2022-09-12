@@ -4,6 +4,7 @@ import About from './components/home/About';
 import Services from './components/home/Services';
 import Skills from './components/home/Skills';
 import Contact from './components/home/Contact';
+// import AxiosTest from './components/home/AxiosTest';
 
 const Home = (props) => {
 
@@ -15,6 +16,7 @@ const Home = (props) => {
             <Services />
             <Skills />
             <Contact />
+            {/* <AxiosTest /> */}
         </>
     )
 }

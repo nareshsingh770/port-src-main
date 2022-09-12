@@ -1,18 +1,47 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import contactDetails from '../../actions/Actions';
-import { useSelector, useDispatch } from 'react-redux'
-import { Container, Paper, Grid, Typography, Stack, TextField } from '@mui/material';
+import { useDispatch } from 'react-redux'
+import { Container, Paper, Grid, Typography, Stack, TextField, Button } from '@mui/material';
 import Heading, { Para } from '../../styled component';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { Box } from '@mui/system';
 
-
+export const initialFeild = {
+    Name: '',
+    Email: '',
+    Subject: '',
+    Message: ''
+}
 const Contact = () => {
 
-    const typedDetails = useSelector((store) => store.messageInput);
+    const inputfeilds = useRef()
+
+    // const typedDetails = useSelector((store) => store.messageInput);
     const dispatch = useDispatch()
 
 
+
+    const [inputEvent, setInput] = useState(initialFeild)
+
+    const InputValues = (e) => {
+        console.log(e.target.name)
+        const { name, value } = e.target;
+
+        setInput((oldVal) => {
+            return {
+                ...oldVal,
+                [name]: value
+            }
+        })
+    }
+
+    const submitDetails = () => {
+
+        dispatch(contactDetails(inputEvent))
+
+        setInput(initialFeild)
+
+    }
     return (
         <>
             <Paper sx={{ py: 10, boxShadow: 'none', borderRadius: 0 }}>
@@ -42,19 +71,22 @@ const Contact = () => {
                         <Grid item lg={6} xs={12}>
                             <Typography variant='subtitle1' color='primary' sx={{ fontSize: '2rem', fontWeight: 'medium', mb: 2 }} >Message</Typography>
 
-                            <Box component='form'>
+                            <Box component='form' ref={inputfeilds}>
                                 <Grid container spacing={2}>
                                     <Grid item lg={6} xs={12}>
-                                        <TextField sx={{ width: '100%' }} id="outlined-basic" name='name' label="Name" variant="outlined" value={typedDetails.name} onChange={(e) => dispatch(contactDetails(e.target))} />
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" value={inputEvent.Name} onChange={InputValues} name='Name' label="Name" variant="outlined" />
                                     </Grid>
                                     <Grid item lg={6} xs={12}>
-                                        <TextField sx={{ width: '100%' }} id="outlined-basic" name='email' label="Email" variant="outlined" value={typedDetails.email} onChange={(e) => dispatch(contactDetails(e.target))} />
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" value={inputEvent.Email} onChange={InputValues} name='Email' label="Email" variant="outlined" />
                                     </Grid>
                                     <Grid item lg={12}>
-                                        <TextField sx={{ width: '100%' }} id="outlined-basic" name='subject' label="Subject" variant="outlined" value={typedDetails.subject} onChange={(e) => dispatch(contactDetails(e.target))} />
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" value={inputEvent.Subject} onChange={InputValues} name='Subject' label="Subject" variant="outlined" />
                                     </Grid>
                                     <Grid item lg={12}>
-                                        <TextField sx={{ width: '100%' }} id="outlined-basic" name='message' label="Message" variant="outlined" value={typedDetails.message} onChange={(e) => dispatch(contactDetails(e.target))} />
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" value={inputEvent.Message} onChange={InputValues} name='Message' label="Message" variant="outlined" />
+                                    </Grid>
+                                    <Grid item lg={12} textAlign='right'>
+                                        <Button size='large' variant='contained' color="primary" onClick={submitDetails} >Submit</Button>
                                     </Grid>
                                 </Grid>
                             </Box>
